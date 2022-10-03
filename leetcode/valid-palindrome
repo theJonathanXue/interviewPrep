@@ -1,0 +1,29 @@
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        # convert all uppercase to lowercase
+        s = s.lower()
+        # remove non-alphanumeric characters
+        s = ''.join(filter(str.isalnum, s))
+        # check if str is a palindrome
+        left = 0
+        right = len(s)-1
+        while left <= right:
+            if s[left] == s[right]:
+                left += 1
+                right -= 1
+            else:
+                return False
+        return True
+
+# O(n) time and O(1) space using 2 pointers 
+class Solution:
+    def isPalindrome(self, s):
+        beg, end = 0, len(s) - 1
+        while beg <= end:
+            while not s[beg].isalnum() and beg < end: beg += 1
+            while not s[end].isalnum() and beg < end: end -= 1
+            if s[beg] == s[end] or s[beg].upper() == s[end].upper():
+                beg, end = beg + 1, end - 1
+            else:
+                return False
+        return True
